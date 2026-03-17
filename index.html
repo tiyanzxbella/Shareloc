@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Alamat Lengkap - Septiyanda Putra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #03090e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 560px;
+            width: 100%;
+            background: #0a1219;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.9);
+            border: 1px solid #0d2a33;
+        }
+
+        .header {
+            background: #030f16;
+            padding: 24px 20px 22px 20px;
+            border-bottom: 3px solid #00a86b;
+        }
+
+        .header h1 {
+            font-size: clamp(24px, 6vw, 30px);
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 6px;
+        }
+
+        .header h1 span {
+            background: #00a86b;
+            color: #030f16;
+            font-size: clamp(14px, 4vw, 16px);
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .header p {
+            color: #7fb6c9;
+            font-size: clamp(14px, 4vw, 16px);
+        }
+
+        .content {
+            padding: 22px 18px;
+            background: #0c1a24;
+        }
+
+        .section-title {
+            color: #00dc82;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+            border-left: 4px solid #0077be;
+            padding-left: 14px;
+        }
+
+        .contact-box {
+            background: #07131c;
+            border-radius: 22px;
+            padding: 16px 14px;
+            margin-bottom: 24px;
+            border: 1px solid #0d3d4a;
+        }
+
+        .phone-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #0d3d4a;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .phone-item:last-child {
+            border-bottom: none;
+        }
+
+        .phone-number {
+            font-size: clamp(18px, 5vw, 22px);
+            font-weight: 600;
+            color: #d1eef7;
+            background: #0b2632;
+            padding: 6px 14px;
+            border-radius: 60px;
+            border: 1px solid #0077be;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            flex: 1 1 auto;
+            min-width: 180px;
+        }
+
+        .copy-btn {
+            background: #0077be;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 3px solid #004d73;
+            white-space: nowrap;
+            min-width: 100px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: all 0.1s;
+        }
+
+        .copy-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 1px;
+        }
+
+        .copy-btn.copied {
+            background: #00a86b;
+            border-bottom-color: #006d45;
+        }
+
+        .alamat-utama {
+            background: #07131c;
+            border-radius: 24px;
+            padding: 20px 18px;
+            margin: 18px 0;
+            border-left: 6px solid #00a86b;
+            border-right: 1px solid #0d3d4a;
+            border-top: 1px solid #0d3d4a;
+            border-bottom: 1px solid #0d3d4a;
+        }
+
+        .alamat-utama .label {
+            color: #00dc82;
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .alamat-text {
+            font-size: clamp(18px, 5vw, 21px);
+            line-height: 1.5;
+            color: white;
+            font-weight: 500;
+            margin-bottom: 16px;
+            word-break: break-word;
+        }
+
+        .alamat-text strong {
+            color: #00dc82;
+            font-weight: 700;
+        }
+
+        .kodepos {
+            background: #0077be;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 15px;
+            border-bottom: 3px solid #004d73;
+        }
+
+        .landmark-box {
+            background: #07131c;
+            border-radius: 24px;
+            padding: 20px 16px;
+            margin: 22px 0 16px;
+            border: 2px solid #00a86b;
+        }
+
+        .landmark-title {
+            color: #4dc3ff;
+            font-size: clamp(17px, 5vw, 20px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .jam {
+            background: #0077be;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .patokan-detail {
+            background: #0b2632;
+            padding: 16px;
+            border-radius: 18px;
+            color: #cfecf5;
+            font-size: clamp(15px, 4.5vw, 17px);
+            line-height: 1.6;
+            border: 1px solid #0077be;
+            word-break: break-word;
+        }
+
+        .patokan-detail i {
+            color: #00dc82;
+            font-style: normal;
+            background: #1d4a4a;
+            padding: 2px 10px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .rangkuman {
+            background: #07131c;
+            border-radius: 20px;
+            padding: 18px 16px;
+            margin: 20px 0 12px;
+            border: 1px solid #0077be;
+            border-bottom: 5px solid #004d73;
+        }
+
+        .rangkuman p {
+            color: white;
+            font-size: clamp(14px, 4vw, 16px);
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .footer {
+            text-align: center;
+            color: #4d7e8f;
+            font-size: 13px;
+            padding: 16px 0 4px;
+            border-top: 1px solid #0d3d4a;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 420px) {
+            .phone-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .phone-number {
+                text-align: center;
+            }
+            .copy-btn {
+                width: 100%;
+                padding: 14px;
+            }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00a86b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+            white-space: nowrap;
+        }
+
+        @keyframes slideUp {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+            to {
+                bottom: 20px;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>
+                SEPTIYANDA PUTRA
+                <span>✂️ pangkas</span>
+            </h1>
+            <p>Jalan Lintas Sumatera · Gunung Besar</p>
+        </div>
+
+        <div class="content">
+            <!-- TELEPHONE SECTION -->
+            <div class="section-title">📞 NOMOR TELEPON</div>
+            <div class="contact-box">
+                <!-- Nomor 1 -->
+                <div class="phone-item">
+                    <span class="phone-number">0859-7253-3957</span>
+                    <button class="copy-btn" onclick="copyPhoneNumber('6285972533957', this)">📋 Salin</button>
+                </div>
+                <!-- Nomor 2 -->
+                <div class="phone-item">
+                    <span class="phone-number">0838-6235-6347</span>
+                    <button class="copy-btn" onclick="copyPhoneNumber('6283862356347', this)">📋 Salin</button>
+                </div>
+            </div>
+
+            <!-- ALAMAT LENGKAP -->
+            <div class="section-title">📍 ALAMAT LENGKAP</div>
+            <div class="alamat-utama">
+                <span class="label">✅ SESUAI KTP & PENGIRIMAN</span>
+                <div class="alamat-text">
+                    Jalan Lintas Sumatera, RT.2/RW.2<br>
+                    <strong>Gunung Besar, Abung Tengah</strong><br>
+                    Kab. Lampung Utara, Lampung <strong>34553</strong>
+                </div>
+                <div class="kodepos">📮 KODE POS: 34553</div>
+            </div>
+
+            <!-- PATOKAN -->
+            <div class="section-title">🔎 PATOKAN LAPANGAN</div>
+            <div class="landmark-box">
+                <div class="landmark-title">
+                    ⚡ PANGKAS RAMBUT "IDOLA"
+                    <span class="jam">⏰ 08.00–21.00</span>
+                </div>
+                <div class="patokan-detail">
+                    <i>📍 Dekat papan arah</i><br>
+                    <span style="color: #4dc3ff;">✂️ Pangkas Rambut Idola + bensin</span><br>
+                    <span style="color: #7fb6c9;">(dekat KUA Abung Tengah)</span><br><br>
+                    <span style="background: #0b2632; padding: 4px 14px; border-radius: 30px; display: inline-block; border: 1px solid #0077be;">
+                        Jl. Lintas Sumatra, Dusun 2 RT.02 Gn.Besar
+                    </span>
+                </div>
+            </div>
+
+            <!-- RINGKASAN -->
+            <div class="rangkuman">
+                <p>
+                    <span style="color: #00dc82; font-weight: 700;">📦 RINGKASAN 5 DETIK:</span><br>
+                    Septiyanda Putra — Jl. Lintas Sumatera RT.2 RW.2 Gunung Besar, Abung Tengah, Lampung Utara 34553.<br>
+                    <span style="color: #4dc3ff;">⬆️⬆️ Tepat di Pangkas Rambut Idola (sebelah penjual bensin), dekat papan arah & KUA.</span>
+                </p>
+            </div>
+
+            <div class="footer">
+                ✅ Klik tombol Salin untuk menyalin nomor telepon
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi global untuk menyalin nomor telepon
+        window.copyPhoneNumber = function(phoneNumber, button) {
+            // Method 1: Menggunakan Clipboard API (modern)
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(phoneNumber).then(function() {
+                    showSuccess(button);
+                }).catch(function(err) {
+                    // Jika gagal, coba method alternatif
+                    fallbackCopy(phoneNumber, button);
+                });
+            } else {
+                // Method 2: Fallback untuk browser lama
+                fallbackCopy(phoneNumber, button);
+            }
+        };
+
+        // Method alternatif menggunakan textarea
+        function fallbackCopy(text, button) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.left = '0';
+            textarea.style.top = '0';
+            textarea.style.width = '100px';
+            textarea.style.height = '100px';
+            document.body.appendChild(textarea);
+            
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showSuccess(button);
+                } else {
+                    alert('Gagal menyalin. Silakan salin manual: ' + text);
+                }
+            } catch (err) {
+                alert('Gagal menyalin. Silakan salin manual: ' + text);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Menampilkan notifikasi sukses
+        function showSuccess(button) {
+            // Ubah tampilan tombol
+            const originalText = button.innerText;
+            button.innerText = '✅ Tersalin!';
+            button.style.background = '#00a86b';
+            button.style.borderBottomColor = '#006d45';
+            
+            // Tampilkan toast notification
+            showToast('Nomor telepon tersalin!');
+            
+            // Kembalikan tampilan tombol setelah 2 detik
+            setTimeout(function() {
+                button.innerText = originalText;
+                button.style.background = '#0077be';
+                button.style.borderBottomColor = '#004d73';
+            }, 2000);
+        }
+
+        // Fungsi untuk menampilkan toast
+        function showToast(message) {
+            // Hapus toast yang ada
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Buat toast baru
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Hapus toast setelah 2 detik
+            setTimeout(function() {
+                if (toast && toast.parentNode) {
+                    toast.remove();
+                }
+            }, 2000);
+        }
+
+        // Tambahan: biar bisa copy dengan cara klik nomor telepon juga
+        document.querySelectorAll('.phone-number').forEach(function(el) {
+            el.addEventListener('click', function() {
+                const phoneText = this.textContent.replace(/[^0-9]/g, '');
+                let fullNumber = phoneText;
+                if (phoneText.startsWith('0')) {
+                    fullNumber = '62' + phoneText.substring(1);
+                }
+                
+                // Cari tombol yang sesuai dan trigger klik
+                const parentItem = this.closest('.phone-item');
+                if (parentItem) {
+                    const btn = parentItem.querySelector('.copy-btn');
+                    if (btn) {
+                        copyPhoneNumber(fullNumber, btn);
+                    }
+                }
+            });
+            el.style.cursor = 'pointer';
+            el.title = 'Klik untuk menyalin';
+        });
+    </script>
+</body>
+</html>
